@@ -40,7 +40,7 @@ A full-stack web application that supports user authentication, real-time flowch
 - MongoDB
 
  Clone the repository
-
+```bash
 
 git clone https://github.com/ashleygracethomas/weather/tree/master
 cd weather
