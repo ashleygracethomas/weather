@@ -218,3 +218,4 @@ Socket Connection Issues: Ensure both server and client are running
 Database Errors: Verify MongoDB connection string in .env
 
 CORS Errors: Confirm frontend is running on correct port (5173 by default)
+![image](https://github.com/user-attachments/assets/acdcfa51-cce0-49b2-96f0-c2994f7d970e)
