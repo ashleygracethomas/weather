@@ -168,7 +168,7 @@ const WeatherDashboard = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Weather Station Dashboard</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Weather Simulator </h1>
           <p className="text-gray-600">Real-time and historical weather data visualization</p>
         </header>
 

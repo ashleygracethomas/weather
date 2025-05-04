@@ -7,8 +7,7 @@ import Dashboard from "./features/dashboard/Dashboard";
 import Profile from "./features/profile/Profile";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./auth/ProtectedRoute";
-import FlowPage from "./features/flowbuilder/FlowPage";
-import FlowsList from "./features/flowbuilder/FlowsList";
+
 import { FlowProvider } from "././context/FlowContext";
 import RealTime from "./features/RealTime/RealTime";
 import AuthRoute from "./auth/AuthRoute";
@@ -48,26 +47,7 @@ const App = () => {
               </Layout>
             }
           />
-          <Route
-            path="/flowchart"
-            element={
-              <Layout>
-                <FlowProvider>
-                  <FlowPage />
-                </FlowProvider>
-              </Layout>
-            }
-          />
-          <Route
-            path="/flows"
-            element={
-              <Layout>
-                <FlowProvider>
-                  <FlowsList />
-                </FlowProvider>
-              </Layout>
-            }
-          />
+      
         </Route>
         <Route
           path="/profile"

@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FiUser, FiMail, FiSettings, FiEdit, FiClock, FiLogOut } from "react-icons/fi";
+import {
+  FiUser,
+  FiMail,
+  FiSettings,
+  FiEdit,
+  FiClock,
+  FiLogOut,
+} from "react-icons/fi";
 import { FaUserCog, FaUserShield } from "react-icons/fa";
 import { getProfile, updateProfile } from "../../api/profileApi"; // adjust path as needed
 
@@ -48,7 +55,7 @@ const Profile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-  
+
     updateProfile(token, formData)
       .then((data) => {
         setProfile(data.user);
@@ -63,7 +70,7 @@ const Profile = () => {
   if (!profile) return <div className="p-4">Loading profile...</div>;
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 md:p-8">
+    <div className="min-h-screen bg-gray-100 px-4 py-6 sm:px-6 md:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
@@ -72,10 +79,12 @@ const Profile = () => {
           </h1>
           <button
             onClick={() => setIsEditing(!isEditing)}
-            className="flex items-center bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-md transition-colors"
+            className="flex items-center bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-2 rounded-md transition-colors"
           >
-            <FiEdit className="mr-2" />
-            {isEditing ? "Cancel" : "Edit Profile"}
+            <FiEdit className="text-lg" />
+            <span className="ml-2 hidden sm:inline">
+              {isEditing ? "Cancel" : "Edit Profile"}
+            </span>
           </button>
         </div>
 
@@ -83,11 +92,13 @@ const Profile = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Profile Info */}
           <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
-            <div className="bg-black p-6 text-center">
+            <div className="bg-gradient-to-b from-gray-800 to-gray-900 p-6 text-center">
               <div className="w-32 h-32 mx-auto rounded-full bg-yellow-400 flex items-center justify-center text-black mb-4">
                 <FiUser size={48} />
               </div>
-              <h2 className="text-2xl font-bold text-yellow-400">{profile.name}</h2>
+              <h2 className="text-2xl font-bold text-yellow-400">
+                {profile.name}
+              </h2>
               <p className="text-gray-300">{profile.email}</p>
             </div>
             <div className="p-6">
@@ -168,7 +179,9 @@ const Profile = () => {
                   <div className="space-y-4">
                     <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
                       <div>
-                        <h4 className="font-medium text-gray-700">Account Status</h4>
+                        <h4 className="font-medium text-gray-700">
+                          Account Status
+                        </h4>
                         <p className="text-sm text-gray-500">Active</p>
                       </div>
                       <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
@@ -177,14 +190,20 @@ const Profile = () => {
                     </div>
                     <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
                       <div>
-                        <h4 className="font-medium text-gray-700">Last Login</h4>
-                        <p className="text-sm text-gray-500">Today at 10:45 AM</p>
+                        <h4 className="font-medium text-gray-700">
+                          Last Login
+                        </h4>
+                        <p className="text-sm text-gray-500">
+                          Today at 10:45 AM
+                        </p>
                       </div>
                       <FiClock className="text-yellow-500" />
                     </div>
                     <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
                       <div>
-                        <h4 className="font-medium text-gray-700">Account Created</h4>
+                        <h4 className="font-medium text-gray-700">
+                          Account Created
+                        </h4>
                         <p className="text-sm text-gray-500">June 15, 2023</p>
                       </div>
                       <FiUser className="text-yellow-500" />
@@ -198,7 +217,9 @@ const Profile = () => {
                     Security
                   </h3>
                   <button className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors">
-                    <span className="font-medium text-gray-700">Change Password</span>
+                    <span className="font-medium text-gray-700">
+                      Change Password
+                    </span>
                     <FiEdit className="text-yellow-500" />
                   </button>
                 </div>

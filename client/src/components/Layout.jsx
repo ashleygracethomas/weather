@@ -41,7 +41,7 @@ const Layout = ({ children }) => {
           />
         )}
 
-        <main className="flex-1 bg-gray-100 p-4 overflow-auto">{children}</main>
+        <main className="flex-1 bg-gray-100  overflow-auto">{children}</main>
       </div>
 
       {isMobile && (

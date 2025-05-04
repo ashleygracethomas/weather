@@ -8,6 +8,10 @@ import {
   FiSearch,
   FiUser,
   FiMenu,
+  FiHome,
+  FiSettings,
+  FiBarChart2,
+  FiAlertOctagon
 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +25,6 @@ const Dashboard = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
-      // Close sidebar on mobile by default
       if (window.innerWidth < 768) {
         setIsSidebarOpen(false);
       } else {
@@ -43,6 +46,7 @@ const Dashboard = () => {
 
   const handleNavClick = (item) => {
     setActiveNavItem(item);
+    if (isMobile) setIsSidebarOpen(false); // Close sidebar on mobile after selection
   };
 
   const handleLogout = () => {
@@ -51,33 +55,52 @@ const Dashboard = () => {
     navigate("/login", { replace: true });
   };
 
+  // Quick links data
+  const quickLinks = [
+    { icon: <FiActivity size={20} />, label: "Dashboard", color: "bg-blue-100 text-blue-600" },
+    { icon: <FiAlertOctagon size={20} />, label: "Alerts", color: "bg-red-100 text-red-600" },
+    { icon: <FiBarChart2 size={20} />, label: "Reports", color: "bg-green-100 text-green-600" },
+    { icon: <FiSettings size={20} />, label: "Settings", color: "bg-purple-100 text-purple-600" }
+  ];
+
   return (
-    <div className="flex h-screen bg-gray-100 font-sans">
+    <div className="flex h-screen font-sans bg-gray-50">
+      {/* Mobile Quick Links Bar - Only visible on mobile */}
+      {isMobile && (
+        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg z-20 md:hidden">
+          <div className="flex justify-around py-3">
+            {quickLinks.map((link, index) => (
+              <button
+                key={index}
+                className={`flex flex-col items-center p-2 rounded-lg ${link.color} w-full mx-1`}
+                onClick={() => handleNavClick(link.label)}
+              >
+                <span className="mb-1">{link.icon}</span>
+                <span className="text-xs font-medium">{link.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Navigation - Always visible */}
-
-        
-        <header className="shadow-sm z-10">
-       
-       
-       
+        {/* Top Navigation */}
+        <header className="bg-white shadow-sm z-10">
           <div className="flex items-center justify-between p-4">
-
-
-            
             {/* Mobile menu button and logo */}
             <div className="flex items-center">
               <button
                 onClick={toggleSidebar}
-                className="p-2 rounded-md hover:bg-gray-100 mr-2 md:hidden"
+                className="p-2 rounded-md hover:bg-gray-100 mr-2 hidden"
               >
-                {/* <FiMenu size={20} className="text-black" /> */}
+                <FiMenu size={20} className="text-black" />
               </button>
-           
+              <h1 className="text-xl font-bold text-yellow-600 hidden md:block">
+                AnomalyDetect
+              </h1>
             </div>
 
-            {/* Search bar - hidden on mobile */}
           
 
             {/* Right side icons */}
@@ -88,7 +111,7 @@ const Dashboard = () => {
                 <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
               </button>
 
-              {/* Profile dropdown - always visible */}
+              {/* Profile dropdown */}
               <div className="relative">
                 <button
                   onClick={toggleProfile}
@@ -97,9 +120,6 @@ const Dashboard = () => {
                   <div className="h-8 w-8 rounded-full bg-yellow-400 flex items-center justify-center text-black">
                     <FiUser size={18} />
                   </div>
-                  <span className="text-sm font-medium hidden md:inline">
-                    John Doe
-                  </span>
                   <FiChevronDown className="hidden md:block" />
                 </button>
 
@@ -111,12 +131,6 @@ const Dashboard = () => {
                     >
                       Your Profile
                     </button>
-                    {/* <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50 transition-colors"
-                    >
-                      Settings
-                    </a> */}
                     <button
                       onClick={handleLogout}
                       className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50 transition-colors"
@@ -131,12 +145,15 @@ const Dashboard = () => {
         </header>
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-y-auto p-6 ">
+        <main className="flex-1 overflow-y-auto pb-16 md:pb-0">
           <div className="max-w-7xl mx-auto p-4">
-            <h2 className="text-2xl font-bold text-black mb-6 flex items-center">
-              <FiActivity className="mr-2 text-yellow-500" /> Equipment Anomaly
-              Dashboard
-            </h2>
+            {/* Welcome Banner */}
+            <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg p-4 mb-6 shadow-md">
+              <h2 className="text-xl font-bold text-white mb-1">Welcome back!</h2>
+              <p className="text-yellow-100 text-sm">
+                Monitoring 3 motors with 2 active anomalies
+              </p>
+            </div>
 
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
@@ -180,7 +197,12 @@ const Dashboard = () => {
                   Motor1 Vibration Signal (Z Axis)
                 </h3>
                 <div className="h-48 bg-gray-50 rounded-md flex items-center justify-center border border-gray-200">
-                  <p className="text-gray-400">Vibration chart placeholder</p>
+                  <div className="text-center">
+                    <p className="text-gray-400 mb-2">Vibration chart</p>
+                    <div className="w-full bg-gray-200 rounded-full h-2.5">
+                      <div className="bg-yellow-400 h-2.5 rounded-full" style={{width: '75%'}}></div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -190,16 +212,26 @@ const Dashboard = () => {
                   Motor2 Vibration Signal (Z Axis)
                 </h3>
                 <div className="h-48 bg-gray-50 rounded-md flex items-center justify-center border border-gray-200">
-                  <p className="text-gray-400">Vibration chart placeholder</p>
+                  <div className="text-center">
+                    <p className="text-gray-400 mb-2">Vibration chart</p>
+                    <div className="w-full bg-gray-200 rounded-full h-2.5">
+                      <div className="bg-black h-2.5 rounded-full" style={{width: '45%'}}></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Recent Activity */}
             <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-              <h3 className="text-lg font-semibold text-black mb-4">
-                Recent Anomalies
-              </h3>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-lg font-semibold text-black">
+                  Recent Anomalies
+                </h3>
+                <button className="text-sm text-yellow-600 hover:underline">
+                  View All
+                </button>
+              </div>
               <div className="space-y-3">
                 <ActivityItem
                   title="High vibration detected on Motor1"
@@ -228,12 +260,12 @@ const Dashboard = () => {
   );
 };
 
-// Reusable Components (these could also be moved to separate files)
+// Reusable Components
 const StatCard = ({ title, value, icon, color }) => {
   const colorClasses = {
-    green: "bg-green-50 border-green-100",
-    yellow: "bg-yellow-50 border-yellow-100",
-    red: "bg-red-50 border-red-100",
+    green: "bg-green-50 border-green-100 hover:bg-green-100",
+    yellow: "bg-yellow-50 border-yellow-100 hover:bg-yellow-100",
+    red: "bg-red-50 border-red-100 hover:bg-red-100",
   };
 
   const textClasses = {
@@ -243,7 +275,7 @@ const StatCard = ({ title, value, icon, color }) => {
   };
 
   return (
-    <div className={`p-4 rounded-lg shadow-sm border ${colorClasses[color]}`}>
+    <div className={`p-4 rounded-lg shadow-sm border ${colorClasses[color]} transition-colors duration-200`}>
       <div className="flex justify-between items-center">
         <div>
           <p className={`text-sm font-medium ${textClasses[color]}`}>{title}</p>
@@ -266,7 +298,7 @@ const ActivityItem = ({ title, time, icon, status }) => {
 
   return (
     <div
-      className={`flex items-start p-3 rounded-md border ${statusClasses[status]}`}
+      className={`flex items-start p-3 rounded-md border ${statusClasses[status]} transition-transform hover:scale-[1.01]`}
     >
       <div className="flex-shrink-0 h-8 w-8 rounded-full bg-white flex items-center justify-center mr-3 shadow-sm">
         {icon}
