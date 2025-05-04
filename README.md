@@ -39,9 +39,9 @@ A full-stack web application that supports user authentication, real-time flowch
 - Node.js (v18+)
 - MongoDB
 
-### 1. Clone the repository
+ Clone the repository
 
-```bash
+
 git clone https://github.com/ashleygracethomas/weather/tree/master
 cd weather
 2. Backend Setup
