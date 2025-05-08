@@ -7,7 +7,6 @@ import Dashboard from "./features/dashboard/Dashboard";
 import Profile from "./features/profile/Profile";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./auth/ProtectedRoute";
-
 import RealTime from "./features/RealTime/RealTime";
 import AuthRoute from "./auth/AuthRoute";
 import FlowEditor from "./features/FlowEditor/FlowEditor";
@@ -46,7 +45,6 @@ const App = () => {
               </Layout>
             }
           />
-      
         </Route>
         <Route
           path="/profile"

@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth");
-const flowController = require("./controllers/flowController");
+const flowRoutes = require("./routes/flow");
 
 const app = express();
 
@@ -21,8 +21,8 @@ console.log("Mongo URI:", process.env.MONGO_URI);
 
 // Routes
 app.use("/api/auth", authRoutes);
-// Routes
-app.use("/api",flowController);
+app.use("/api/flow", flowRoutes);
+
 // Start Server
 const PORT = process.env.PORT || 5000;
 

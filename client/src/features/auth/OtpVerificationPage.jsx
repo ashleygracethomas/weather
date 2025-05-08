@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import verifyOtp from "../../api/verifyOtpApi";
 import resendOtp from "../../api/resendOtpApi";
-import { FiSun, FiCloud, FiCloudRain, FiCloudSnow, FiCheckCircle } from "react-icons/fi";
+import {
+  FiSun,
+  FiCloud,
+  FiCloudRain,
+  FiCloudSnow,
+  FiCheckCircle,
+} from "react-icons/fi";
+import "../../css/weatherstyle.css";
 
 const OtpVerification = () => {
   const [otp, setOtp] = useState("");
@@ -11,7 +18,9 @@ const OtpVerification = () => {
   const [resendMessage, setResendMessage] = useState("");
   const [resending, setResending] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [currentWeatherIcon, setCurrentWeatherIcon] = useState(<FiSun className="text-yellow-400" />);
+  const [currentWeatherIcon, setCurrentWeatherIcon] = useState(
+    <FiSun className="text-yellow-400" />
+  );
   const [temperature, setTemperature] = useState("72°F");
   const navigate = useNavigate();
 
@@ -26,7 +35,7 @@ const OtpVerification = () => {
       { icon: <FiCloudRain className="text-blue-300" />, temp: "58°F" },
       { icon: <FiCloudSnow className="text-blue-100" />, temp: "32°F" },
     ];
-    
+
     let counter = 0;
     const weatherInterval = setInterval(() => {
       setCurrentWeatherIcon(weatherIcons[counter].icon);
@@ -107,74 +116,76 @@ const OtpVerification = () => {
       <div className="fixed inset-0 overflow-hidden">
         {/* Sun */}
         <div className="absolute top-10 right-10 w-24 h-24 bg-yellow-400 rounded-full mix-blend-screen filter blur-xl opacity-20 animate-pulse"></div>
-        
+
         {/* Clouds */}
         <div className="absolute top-1/4 left-1/4 w-32 h-12 bg-gray-300 rounded-full opacity-10 animate-float"></div>
         <div className="absolute top-1/3 right-1/3 w-40 h-14 bg-gray-400 rounded-full opacity-10 animate-float animation-delay-2000"></div>
-        
+
         {/* Enhanced Rain Animation */}
-        {React.isValidElement(currentWeatherIcon) && currentWeatherIcon.type === FiCloudRain && (
-          <>
-            {/* Rain Drops */}
-            {[...Array(30)].map((_, i) => (
-              <div 
-                key={`rain-${i}`}
-                className="absolute top-0 left-0 w-0.5 bg-blue-300 rounded-full opacity-80 animate-rain"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  height: `${10 + Math.random() * 10}px`,
-                  animationDuration: `${0.5 + Math.random() * 1}s`,
-                  animationDelay: `${Math.random() * 2}s`,
-                }}
-              />
-            ))}
-            
-            {/* Rain Streaks */}
-            {[...Array(15)].map((_, i) => (
-              <div 
-                key={`streak-${i}`}
-                className="absolute top-0 left-0 w-px bg-blue-400 opacity-70 animate-rain-streak"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  height: `${20 + Math.random() * 30}px`,
-                  animationDuration: `${0.3 + Math.random() * 0.7}s`,
-                  animationDelay: `${Math.random() * 1.5}s`,
-                }}
-              />
-            ))}
-            
-            {/* Rain Splash Effects */}
-            {[...Array(10)].map((_, i) => (
-              <div
-                key={`splash-${i}`}
-                className="absolute bottom-0 left-0 w-2 h-1 bg-blue-300 rounded-full opacity-70 animate-splash"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  animationDuration: `${0.3 + Math.random() * 0.4}s`,
-                  animationDelay: `${Math.random() * 2}s`,
-                  transform: `scale(${0.5 + Math.random() * 0.5})`,
-                }}
-              />
-            ))}
-          </>
-        )}
-        
+        {React.isValidElement(currentWeatherIcon) &&
+          currentWeatherIcon.type === FiCloudRain && (
+            <>
+              {/* Rain Drops */}
+              {[...Array(30)].map((_, i) => (
+                <div
+                  key={`rain-${i}`}
+                  className="absolute top-0 left-0 w-0.5 bg-blue-300 rounded-full opacity-80 animate-rain"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    height: `${10 + Math.random() * 10}px`,
+                    animationDuration: `${0.5 + Math.random() * 1}s`,
+                    animationDelay: `${Math.random() * 2}s`,
+                  }}
+                />
+              ))}
+
+              {/* Rain Streaks */}
+              {[...Array(15)].map((_, i) => (
+                <div
+                  key={`streak-${i}`}
+                  className="absolute top-0 left-0 w-px bg-blue-400 opacity-70 animate-rain-streak"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    height: `${20 + Math.random() * 30}px`,
+                    animationDuration: `${0.3 + Math.random() * 0.7}s`,
+                    animationDelay: `${Math.random() * 1.5}s`,
+                  }}
+                />
+              ))}
+
+              {/* Rain Splash Effects */}
+              {[...Array(10)].map((_, i) => (
+                <div
+                  key={`splash-${i}`}
+                  className="absolute bottom-0 left-0 w-2 h-1 bg-blue-300 rounded-full opacity-70 animate-splash"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    animationDuration: `${0.3 + Math.random() * 0.4}s`,
+                    animationDelay: `${Math.random() * 2}s`,
+                    transform: `scale(${0.5 + Math.random() * 0.5})`,
+                  }}
+                />
+              ))}
+            </>
+          )}
+
         {/* Snowflakes */}
-        {React.isValidElement(currentWeatherIcon) && currentWeatherIcon.type === FiCloudSnow && (
-          <>
-            {[...Array(15)].map((_, i) => (
-              <div
-                key={`snow-${i}`}
-                className="absolute top-0 left-0 w-2 h-2 bg-white rounded-full opacity-80 animate-snow"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  animationDuration: `${3 + Math.random() * 3}s`,
-                  animationDelay: `${Math.random() * 2}s`,
-                }}
-              />
-            ))}
-          </>
-        )}
+        {React.isValidElement(currentWeatherIcon) &&
+          currentWeatherIcon.type === FiCloudSnow && (
+            <>
+              {[...Array(15)].map((_, i) => (
+                <div
+                  key={`snow-${i}`}
+                  className="absolute top-0 left-0 w-2 h-2 bg-white rounded-full opacity-80 animate-snow"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    animationDuration: `${3 + Math.random() * 3}s`,
+                    animationDelay: `${Math.random() * 2}s`,
+                  }}
+                />
+              ))}
+            </>
+          )}
       </div>
 
       {/* Verification Card */}
@@ -188,10 +199,14 @@ const OtpVerification = () => {
                 {currentWeatherIcon}
               </span>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 text-center">WeatherSphere</h1>
-            <p className="text-gray-900 text-opacity-80 text-center mt-1">Secure Verification</p>
+            <h1 className="text-3xl font-bold text-gray-900 text-center">
+              WeatherSphere
+            </h1>
+            <p className="text-gray-900 text-opacity-80 text-center mt-1">
+              Secure Verification
+            </p>
           </div>
-          
+
           {/* Form */}
           <div className="p-8">
             <p className="text-center text-gray-300 text-sm mb-6">
@@ -208,7 +223,10 @@ const OtpVerification = () => {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="otp" className="block text-sm font-medium text-gray-300 mb-1">
+                <label
+                  htmlFor="otp"
+                  className="block text-sm font-medium text-gray-300 mb-1"
+                >
                   OTP Code
                 </label>
                 <div className="relative">
@@ -225,9 +243,7 @@ const OtpVerification = () => {
                     }`}
                   />
                 </div>
-                {error && (
-                  <p className="mt-2 text-sm text-red-400">{error}</p>
-                )}
+                {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
               </div>
 
               <button
@@ -244,7 +260,9 @@ const OtpVerification = () => {
                   <div className="w-full border-t border-gray-600"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-gray-800 text-gray-400">Didn't receive the code?</span>
+                  <span className="px-2 bg-gray-800 text-gray-400">
+                    Didn't receive the code?
+                  </span>
                 </div>
               </div>
 
@@ -258,9 +276,25 @@ const OtpVerification = () => {
                 >
                   {resending ? (
                     <span className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="animate-spin -ml-1 mr-2 h-4 w-4 text-yellow-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                       Resending...
                     </span>
@@ -269,166 +303,15 @@ const OtpVerification = () => {
                   )}
                 </button>
                 {resendMessage && (
-                  <div className="text-green-400 mt-2 text-sm">{resendMessage}</div>
+                  <div className="text-green-400 mt-2 text-sm">
+                    {resendMessage}
+                  </div>
                 )}
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0% {
-            transform: translateX(0) translateY(0);
-          }
-          50% {
-            transform: translateX(20px) translateY(-10px);
-          }
-          100% {
-            transform: translateX(0) translateY(0);
-          }
-        }
-        @keyframes rain {
-          0% {
-            transform: translateY(-100px) translateX(0);
-            opacity: 0;
-          }
-          10% {
-            opacity: 0.8;
-          }
-          90% {
-            opacity: 0.8;
-          }
-          100% {
-            transform: translateY(100vh) translateX(10px);
-            opacity: 0;
-          }
-        }
-        @keyframes rain-streak {
-          0% {
-            transform: translateY(-150px) translateX(0) skewX(10deg);
-            opacity: 0;
-          }
-          20% {
-            opacity: 0.7;
-          }
-          80% {
-            opacity: 0.7;
-          }
-          100% {
-            transform: translateY(100vh) translateX(15px) skewX(10deg);
-            opacity: 0;
-          }
-        }
-        @keyframes splash {
-          0% {
-            transform: scale(0.1);
-            opacity: 0;
-          }
-          30% {
-            opacity: 0.6;
-            transform: scale(1);
-          }
-          70% {
-            opacity: 0.6;
-            transform: scale(1);
-          }
-          100% {
-            opacity: 0;
-            transform: scale(0.1);
-          }
-        }
-        @keyframes snow {
-          0% {
-            transform: translateY(-10px) translateX(0) rotate(0deg);
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(100vh) translateX(20px) rotate(360deg);
-            opacity: 0;
-          }
-        }
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-        @keyframes float-1 {
-          0%, 100% {
-            transform: translateY(0) translateX(0);
-          }
-          50% {
-            transform: translateY(-15px) translateX(10px);
-          }
-        }
-        @keyframes float-2 {
-          0%, 100% {
-            transform: translateY(0) translateX(0);
-          }
-          50% {
-            transform: translateY(10px) translateX(-10px);
-          }
-        }
-        @keyframes float-3 {
-          0%, 100% {
-            transform: translateY(0) translateX(0);
-          }
-          50% {
-            transform: translateY(-5px) translateX(15px);
-          }
-        }
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 0.2;
-          }
-          50% {
-            opacity: 0.4;
-          }
-        }
-        .animate-float {
-          animation: float 8s ease-in-out infinite;
-        }
-        .animate-float-1 {
-          animation: float-1 6s ease-in-out infinite;
-        }
-        .animate-float-2 {
-          animation: float-2 7s ease-in-out infinite;
-        }
-        .animate-float-3 {
-          animation: float-3 5s ease-in-out infinite;
-        }
-        .animate-rain {
-          animation: rain linear infinite;
-        }
-        .animate-rain-streak {
-          animation: rain-streak linear infinite;
-        }
-        .animate-splash {
-          animation: splash ease-out infinite;
-        }
-        .animate-snow {
-          animation: snow linear infinite;
-        }
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
-        }
-        .animate-pulse {
-          animation: pulse 4s ease-in-out infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-      `}</style>
     </div>
   );
 };

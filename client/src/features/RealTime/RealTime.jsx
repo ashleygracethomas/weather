@@ -411,7 +411,7 @@ const WeatherDashboard = () => {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                      {historicalData.slice(0, 5).map((record, index) => (
+                      {historicalData.slice(0, 10).map((record, index) => (
                         <tr key={index}>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {new Date(record.timestamp).toLocaleString()}

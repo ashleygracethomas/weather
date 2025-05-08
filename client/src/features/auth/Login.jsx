@@ -12,7 +12,7 @@ import {
   FiCloudRain,
   FiCloudSnow,
 } from "react-icons/fi";
-
+import "../../css/weatherstyle.css";
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -49,7 +49,7 @@ const LoginPage = () => {
     }, 3000);
 
     return () => clearInterval(weatherInterval);
-  }, [navigate]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -238,7 +238,6 @@ const LoginPage = () => {
                   <p className="mt-1 text-sm text-red-400">{errors.email}</p>
                 )}
               </div>
-{/* hjgg */}
               <div>
                 <label
                   htmlFor="password"
@@ -333,129 +332,6 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
-
-      {/* Add these styles for the animated weather elements */}
-      <style jsx>{`
-        @keyframes float {
-          0% {
-            transform: translateX(0) translateY(0);
-          }
-          50% {
-            transform: translateX(20px) translateY(-10px);
-          }
-          100% {
-            transform: translateX(0) translateY(0);
-          }
-        }
-        @keyframes rain {
-          0% {
-            transform: translateY(-100px) translateX(0);
-            opacity: 0;
-          }
-          10% {
-            opacity: 0.8;
-          }
-          90% {
-            opacity: 0.8;
-          }
-          100% {
-            transform: translateY(100vh) translateX(10px);
-            opacity: 0;
-          }
-        }
-        @keyframes rain-streak {
-          0% {
-            transform: translateY(-150px) translateX(0) skewX(10deg);
-            opacity: 0;
-          }
-          20% {
-            opacity: 0.7;
-          }
-          80% {
-            opacity: 0.7;
-          }
-          100% {
-            transform: translateY(100vh) translateX(15px) skewX(10deg);
-            opacity: 0;
-          }
-        }
-        @keyframes splash {
-          0% {
-            transform: scale(0.1);
-            opacity: 0;
-          }
-          30% {
-            opacity: 0.6;
-            transform: scale(1);
-          }
-          70% {
-            opacity: 0.6;
-            transform: scale(1);
-          }
-          100% {
-            opacity: 0;
-            transform: scale(0.1);
-          }
-        }
-        @keyframes snow {
-          0% {
-            transform: translateY(-10px) translateX(0) rotate(0deg);
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(100vh) translateX(20px) rotate(360deg);
-            opacity: 0;
-          }
-        }
-        @keyframes pulse {
-          0%,
-          100% {
-            opacity: 0.2;
-          }
-          50% {
-            opacity: 0.4;
-          }
-        }
-        .animate-float {
-          animation: float 8s ease-in-out infinite;
-        }
-        .animate-rain {
-          animation: rain linear infinite;
-        }
-        .animate-rain-streak {
-          animation: rain-streak linear infinite;
-        }
-        .animate-splash {
-          animation: splash ease-out infinite;
-        }
-        .animate-snow {
-          animation: snow 3s linear infinite;
-        }
-        .animate-pulse {
-          animation: pulse 4s ease-in-out infinite;
-        }
-        .animation-delay-100 {
-          animation-delay: 0.1s;
-        }
-        .animation-delay-300 {
-          animation-delay: 0.3s;
-        }
-        .animation-delay-500 {
-          animation-delay: 0.5s;
-        }
-        .animation-delay-700 {
-          animation-delay: 0.7s;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-      `}</style>
     </div>
   );
 };

@@ -11,7 +11,7 @@ import {
   FiHome,
   FiSettings,
   FiBarChart2,
-  FiAlertOctagon
+  FiAlertOctagon,
 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
@@ -57,10 +57,26 @@ const Dashboard = () => {
 
   // Quick links data
   const quickLinks = [
-    { icon: <FiActivity size={20} />, label: "Dashboard", color: "bg-blue-100 text-blue-600" },
-    { icon: <FiAlertOctagon size={20} />, label: "Alerts", color: "bg-red-100 text-red-600" },
-    { icon: <FiBarChart2 size={20} />, label: "Reports", color: "bg-green-100 text-green-600" },
-    { icon: <FiSettings size={20} />, label: "Settings", color: "bg-purple-100 text-purple-600" }
+    {
+      icon: <FiActivity size={20} />,
+      label: "Dashboard",
+      color: "bg-blue-100 text-blue-600",
+    },
+    {
+      icon: <FiAlertOctagon size={20} />,
+      label: "Alerts",
+      color: "bg-red-100 text-red-600",
+    },
+    {
+      icon: <FiBarChart2 size={20} />,
+      label: "Reports",
+      color: "bg-green-100 text-green-600",
+    },
+    {
+      icon: <FiSettings size={20} />,
+      label: "Settings",
+      color: "bg-purple-100 text-purple-600",
+    },
   ];
 
   return (
@@ -100,8 +116,6 @@ const Dashboard = () => {
                 AnomalyDetect
               </h1>
             </div>
-
-          
 
             {/* Right side icons */}
             <div className="flex items-center space-x-4">
@@ -149,7 +163,9 @@ const Dashboard = () => {
           <div className="max-w-7xl mx-auto p-4">
             {/* Welcome Banner */}
             <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg p-4 mb-6 shadow-md">
-              <h2 className="text-xl font-bold text-white mb-1">Welcome back!</h2>
+              <h2 className="text-xl font-bold text-white mb-1">
+                Welcome back!
+              </h2>
               <p className="text-yellow-100 text-sm">
                 Monitoring 3 motors with 2 active anomalies
               </p>
@@ -200,22 +216,10 @@ const Dashboard = () => {
                   <div className="text-center">
                     <p className="text-gray-400 mb-2">Vibration chart</p>
                     <div className="w-full bg-gray-200 rounded-full h-2.5">
-                      <div className="bg-yellow-400 h-2.5 rounded-full" style={{width: '75%'}}></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-                <h3 className="text-lg font-semibold text-black mb-4 flex items-center">
-                  <span className="h-3 w-3 rounded-full bg-black mr-2"></span>
-                  Motor2 Vibration Signal (Z Axis)
-                </h3>
-                <div className="h-48 bg-gray-50 rounded-md flex items-center justify-center border border-gray-200">
-                  <div className="text-center">
-                    <p className="text-gray-400 mb-2">Vibration chart</p>
-                    <div className="w-full bg-gray-200 rounded-full h-2.5">
-                      <div className="bg-black h-2.5 rounded-full" style={{width: '45%'}}></div>
+                      <div
+                        className="bg-yellow-400 h-2.5 rounded-full"
+                        style={{ width: "75%" }}
+                      ></div>
                     </div>
                   </div>
                 </div>
@@ -239,12 +243,7 @@ const Dashboard = () => {
                   icon={<FiAlertTriangle className="text-red-500" />}
                   status="high"
                 />
-                <ActivityItem
-                  title="Low anomaly detected on Motor2"
-                  time="35 min ago"
-                  icon={<FiAlertCircle className="text-yellow-500" />}
-                  status="medium"
-                />
+
                 <ActivityItem
                   title="System check completed"
                   time="2 hours ago"
@@ -275,7 +274,9 @@ const StatCard = ({ title, value, icon, color }) => {
   };
 
   return (
-    <div className={`p-4 rounded-lg shadow-sm border ${colorClasses[color]} transition-colors duration-200`}>
+    <div
+      className={`p-4 rounded-lg shadow-sm border ${colorClasses[color]} transition-colors duration-200`}
+    >
       <div className="flex justify-between items-center">
         <div>
           <p className={`text-sm font-medium ${textClasses[color]}`}>{title}</p>
