@@ -20,6 +20,7 @@ A full-stack web application that supports user authentication, real-time flowch
 **Frontend**:
 - React (Vite)
 - TailwindCSS
+- Bootstrap
 - Context API
 - Axios
 
