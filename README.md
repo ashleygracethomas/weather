@@ -28,6 +28,7 @@ A full-stack web application that supports user authentication, real-time flowch
 **Backend**:
 - Node.js / Express
 - MongoDB (Mongoose)
+- MySql
 - Nodemailer (for OTP emails)
 - JSON Web Tokens (JWT)
 - SSE
