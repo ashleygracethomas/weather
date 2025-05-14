@@ -23,6 +23,7 @@ A full-stack web application that supports user authentication, real-time flowch
 - Bootstrap
 - Context API
 - Rest API
+- SOAP API
 - Axios
 
 **Backend**:
