@@ -22,6 +22,7 @@ A full-stack web application that supports user authentication, real-time flowch
 - TailwindCSS
 - Bootstrap
 - Context API
+- Rest API
 - SOAP API
 - Axios
 
